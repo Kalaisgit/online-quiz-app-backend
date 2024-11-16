@@ -62,13 +62,6 @@ Created folders and files inside backend folder,
 
 mkdir config controllers models routes middleware
 
-backend/
-├── config/ # For DB connection and configuration
-├── controllers/ # For controller files (auth, quiz)
-├── models/ # For Sequelize models (user, question, answer, sequelize)
-├── routes/ # For route files (auth, quiz)
-├── middleware/ # For middleware files (auth validation)
-
 cd config
 touch db.js
 cd ..
@@ -87,33 +80,6 @@ touch authMiddleware.js
 cd ..
 
 In backend folder -> touch .env index.js
-
-Backend folder structure must look like this:
-backend/
-│
-├── config/
-│ └── db.js # Database connection and Sequelize setup
-│
-├── controllers/  
-│ └── authController.js # Handles user registration, login, and JWT
-│ └── quizController.js # Handles quiz-related logic (CRUD for questions, getting quizzes, etc.)
-│
-├── models/
-│ ├── user.js # Sequelize model for the user table
-│ ├── question.js # Sequelize model for the quiz question table
-│ ├── answer.js # Sequelize model for the answers to the questions
-│ └── sequelize.js # Sequelize initialization and model associations
-│
-├── routes/
-│ ├── authRoutes.js # Routes for authentication (register, login)
-│ └── quizRoutes.js # Routes for quiz CRUD operations (create, read, etc.)
-│
-├── middleware/
-│ └── authMiddleware.js # Middleware to protect routes and verify JWTs
-│
-├── .env # Environment variables (DB credentials, JWT secret)
-├── index.js # Main entry point for the backend server (Express setup)
-└── package.json # Project dependencies and scripts
 
 Step 8:
 Set up the .env file(stored all the sensitive info in this file)
