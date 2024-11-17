@@ -118,3 +118,11 @@ process.env.DB_HOST: This accesses the environment variable DB_HOST, which is th
 dialect: 'mysql': This specifies the type of database i am using. In this case, it's MySQL.
 
 logging: false: This is an optional configuration. By setting logging to false, I disable Sequelize's default logging behavior (which outputs SQL queries to the console). This can keep output cleaner, especially in production environments. If you want to log SQL queries, you can set this to true or provide a custom logging function.
+
+Step 10 :
+
+10.1-> after setting up mysql db in db.js
+10.2-> user.js -> db with a table and column names username,password,role and the datatypes and rules for them are defined.
+10.3-> authController.js -> to register the user details
+10.4-> authRoutes.js -> route for autentication, registering user
+10.5-> index.js -> setup /api/auth route
