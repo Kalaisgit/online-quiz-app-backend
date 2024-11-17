@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js"; // Import auth routes
+import sequelize from "./config/db.js";
 
 dotenv.config(); // Load environment variables
 
@@ -16,6 +17,8 @@ app.use("/api/auth", authRoutes); // Set up the /api/auth routes for user authen
 
 const PORT = process.env.PORT || 5001; // Use a different port if 5000 is in use
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
+  await sequelize.authenticate();
+  console.log("Database connected!");
 });

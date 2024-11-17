@@ -20,19 +20,21 @@ const User = sequelize.define(
     },
   },
   {
-    timestamps: false, // Disable Sequelize's automatic handling of createdAt and updatedAt
+    timestamps: false,
   }
 );
 
 // Hash password before saving a user
 User.beforeCreate(async (user) => {
-  const hashedPassword = await bcrypt.hash(user.password, 10); // Hash the password with bcrypt
-  user.password = hashedPassword; // Set the hashed password in the user instance
+  if (user.changed("password")) {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    user.password = hashedPassword;
+  }
 });
 
 // Optional: Add a method to compare password during login
 User.prototype.validPassword = async function (password) {
-  return await bcrypt.compare(password, this.password); // Compare plaintext password with the stored hash
+  return await bcrypt.compare(password, this.password);
 };
 
 export default User;
