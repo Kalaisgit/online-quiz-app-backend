@@ -87,6 +87,7 @@ DB_NAME=quiz_app
 DB_USER=root
 DB_PASSWORD=mypassword
 DB_HOST=localhost
+PORT=5001
 
 Step 9:
 in backend/config/db.js ,

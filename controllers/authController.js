@@ -3,6 +3,7 @@ import User from "../models/user.js"; // Import the User model
 // User Registration Handler
 export const registerUser = async (req, res) => {
   try {
+    console.log(req.body); // Log request body to verify input
     const { username, password, role } = req.body;
 
     if (!username || !password || !role) {
