@@ -14,7 +14,8 @@ app.use(express.json()); // Allows handling JSON requests
 // Routes
 app.use("/api/auth", authRoutes); // Set up the /api/auth routes for user authentication
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001; // Use a different port if 5000 is in use
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
