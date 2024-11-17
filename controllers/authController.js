@@ -1,7 +1,7 @@
 import User from "../models/user.js"; // Import the User model
 
 // User Registration Handler
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   try {
     const { username, password, role } = req.body;
 
@@ -34,5 +34,3 @@ const registerUser = async (req, res) => {
       .json({ message: "Error registering user", error: error.message });
   }
 };
-
-export default registerUser;
