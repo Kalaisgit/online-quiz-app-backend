@@ -2,21 +2,27 @@ import { DataTypes } from "sequelize";
 import bcrypt from "bcryptjs";
 import sequelize from "../config/db.js";
 
-const User = sequelize.define("User", {
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
+const User = sequelize.define(
+  "User",
+  {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM("teacher", "student"),
+      allowNull: false,
+    },
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  role: {
-    type: DataTypes.ENUM("teacher", "student"),
-    allowNull: false,
-  },
-});
+  {
+    timestamps: false, // Disable Sequelize's automatic handling of createdAt and updatedAt
+  }
+);
 
 // Hash password before saving a user
 User.beforeCreate(async (user) => {
