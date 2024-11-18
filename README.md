@@ -120,9 +120,24 @@ dialect: 'mysql': This specifies the type of database i am using. In this case, 
 logging: false: This is an optional configuration. By setting logging to false, I disable Sequelize's default logging behavior (which outputs SQL queries to the console). This can keep output cleaner, especially in production environments. If you want to log SQL queries, you can set this to true or provide a custom logging function.
 
 Step 10 :
-
 10.1-> after setting up mysql db in db.js
 10.2-> user.js -> db with a table and column names username,password,role and the datatypes and rules for them are defined.
 10.3-> authController.js -> to register the user details
 10.4-> authRoutes.js -> route for autentication, registering user
 10.5-> index.js -> setup /api/auth route
+10.6-> Successfully creates a new user in the database.
+10.7-> Hashes the password before saving.
+10.8-> Returns a success message and the created user.
+
+Step 11:
+11.1-> Login Route (/login)
+11.2-> Successfully validates user credentials.
+11.3-> Verifies the password using bcrypt.
+11.4-> Generates a JWT token upon successful login.
+11.5-> Returns the token to the client.
+
+Step 12:
+12.1-> Protected Route (/api/protected)
+12.2-> Verifies the JWT token.
+12.3-> Grants access to the protected resource.
+12.4->Returns the user details from the decoded token.
