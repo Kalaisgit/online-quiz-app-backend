@@ -5,6 +5,11 @@ import sequelize from "../config/db.js";
 const User = sequelize.define(
   "User",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,6 +41,10 @@ User.beforeCreate(async (user) => {
 // Optional: Add a method to compare password during login
 User.prototype.validPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
+};
+
+User.associate = (models) => {
+  User.hasMany(models.Question, { foreignKey: "userId", as: "questions" });
 };
 
 export default User;
