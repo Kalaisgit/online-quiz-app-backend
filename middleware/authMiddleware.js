@@ -2,7 +2,8 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-const authMiddleware = (req, res, next) => {
+// Middleware to check if the request has a valid JWT token
+export const authMiddleware = (req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
 
   if (!token) {
@@ -11,10 +12,10 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Attach user info to the request object
+    req.user = decoded; // Attach user info to request object
     next(); // Proceed to the next middleware or route handler
   } catch (err) {
-    console.error("Token verification failed:", err); // Log the error for debugging
+    console.error("Token verification failed:", err);
     return res.status(401).json({ message: "Token is not valid" });
   }
 };
