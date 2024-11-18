@@ -34,28 +34,32 @@ export const registerUser = async (req, res) => {
 // Login a user
 export const loginUser = async (req, res) => {
   const { username, password } = req.body;
+  console.log("Login attempt with:", username, password); // Add this line to debug
 
   try {
+    // Check if user exists
     const user = await User.findOne({ where: { username } });
-
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    // Compare the provided password with the hashed password
+    // Compare the password with the hashed password stored in the database
     const isMatch = await bcrypt.compare(password, user.password);
-
+    console.log("Password from request:", password); // Debug line
+    console.log("Hashed password in DB:", user.password); // Debug line
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Generate a JWT token
+    // Generate JWT token
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
 
+    console.log("Login successful!"); // Log success
     res.status(200).json({ message: "Login successful", token });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Error logging in", error: error.message });
   }
 };
