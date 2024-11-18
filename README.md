@@ -140,4 +140,10 @@ Step 12:
 12.1-> Protected Route (/api/protected)
 12.2-> Verifies the JWT token.
 12.3-> Grants access to the protected resource.
-12.4->Returns the user details from the decoded token.
+12.4-> Returns the user details from the decoded token.
+
+Step 13:
+13.1-> Create the Quizzes table first because Questions will reference it.
+13.2-> Define the Questions table to reference the Quizzes table.
+13.3-> Define the Answers table to reference the Questions table.
+13.4-> The Users table can be created independently as it doesn’t have any foreign key dependencies.
