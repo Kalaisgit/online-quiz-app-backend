@@ -26,7 +26,8 @@ const User = sequelize.define(
 
 // Hash password before saving a user
 User.beforeCreate(async (user) => {
-  if (user.changed("password")) {
+  if (user.password) {
+    // Only hash if password exists
     const hashedPassword = await bcrypt.hash(user.password, 10);
     user.password = hashedPassword;
   }
